@@ -1,17 +1,35 @@
 ---
+// src/pages/index.astro
+// Halaman utama – mengintegrasikan semua komponen
+// Blog data di-fetch saat build time menggunakan fetchBlog.js
 
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Tentang from '../components/Tentang.astro';
+import Keahlian from '../components/Keahlian.astro';
+import Proyek from '../components/Proyek.astro';
+import BlogPreview from '../components/BlogPreview.astro';
+import Kontak from '../components/Kontak.astro';
+import Footer from '../components/Footer.astro';
+import { fetchBlog } from '../utils/fetchBlog.js';
+
+// Fetch artikel saat build time (server-side, bukan client-side)
+const blogPosts = await fetchBlog();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Ahmad Syaifullah | Spesialis Administrasi Sekolah & Keuangan"
+  description="Ahmad Syaifullah, spesialis Administrasi Sekolah, pengelolaan Dana BOS, Dapodik, BPJS, dan Pelaporan Keuangan. Berbasis di Pontianak, Indonesia."
+>
+  <Navbar />
+  <main>
+    <Hero />
+    <Tentang />
+    <Keahlian />
+    <Proyek />
+    <BlogPreview posts={blogPosts} />
+    <Kontak />
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,120 @@
+---
+// src/layouts/BaseLayout.astro
+// Layout utama dengan SEO, Open Graph, dan JSON-LD schema
+
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Ahmad Syaifullah | Spesialis Administrasi Sekolah & Keuangan',
+  description = 'Ahmad Syaifullah, spesialis Administrasi Sekolah, Dana BOS, Dapodik, BPJS, dan Pelaporan Keuangan di Pontianak, Indonesia.',
+  ogImage = '/og-image.jpg',
+} = Astro.props;
+
+// Ensure clean canonical URL targeting the specific domain
+const canonicalURL = new URL(Astro.url.pathname, 'https://ahmadsyaifullah.my.id');
+
+const schemaJSON = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Ahmad Syaifullah Portfolio",
+    "url": "https://ahmadsyaifullah.my.id",
+    "description": "Portofolio profesional Ahmad Syaifullah di bidang administrasi sekolah dan pelaporan keuangan."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ahmad Syaifullah",
+    "url": "https://ahmadsyaifullah.my.id",
+    "sameAs": [
+      "https://ragamtutorial.web.id"
+    ],
+    "jobTitle": "Spesialis Administrasi Sekolah dan Manajemen Data Pendidikan",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Sekolah"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Pontianak",
+      "addressCountry": "Indonesia"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Sarjana Akuntansi Syariah"
+    },
+    "knowsAbout": [
+      "Administrasi Sekolah",
+      "Dana BOS",
+      "Dapodik",
+      "Administrasi BPJS",
+      "Pelaporan Keuangan Sekolah",
+      "Microsoft Excel"
+    ]
+  }
+]);
+---
+
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Ahmad Syaifullah" />
+    <meta name="keywords" content="Ahmad Syaifullah, Administrasi Sekolah, Dana BOS, Dapodik, BPJS Kesehatan, Pelaporan Keuangan, Portofolio, Pontianak" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:site_name" content="Ahmad Syaifullah Portfolio" />
+    <meta property="og:locale" content="id_ID" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="ahmadsyaifullah.my.id">
+    <meta property="twitter:url" content={canonicalURL}>
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon-rounded.svg" />
+    <link rel="shortcut icon" href="/favicon-rounded.svg" />
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Material Symbols Outlined -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD Person Schema -->
+    <script type="application/ld+json" set:html={schemaJSON}></script>
+  </head>
+  <body class="bg-white text-slate-900 antialiased selection:bg-[#2563EB] selection:text-white">
+    <slot />
+  </body>
+</html>

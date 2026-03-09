@@ -1,0 +1,119 @@
+---
+// src/components/BlogPreview.astro
+// Data di-pass dari index.astro (di-fetch saat build time via fetchBlog.js)
+// Layout grid 3 kolom sesuai dasar-ui-ux.html
+
+export interface Props {
+  posts: Array<{
+    judul: string;
+    tanggal: string;
+    ringkasan: string;
+    link: string;
+    thumbnail: string;
+  }>;
+}
+
+const { posts } = Astro.props;
+---
+
+<section class="py-24 bg-white" id="blog">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h2 class="text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Artikel Terbaru</h2>
+      <p class="mt-4 text-lg text-slate-600">
+        Tutorial dan panduan administrasi sekolah dari blog saya di
+        <a
+          class="text-[#2563EB] hover:underline font-medium"
+          href="https://ragamtutorial.web.id"
+          target="_blank"
+          rel="noopener noreferrer"
+        >ragamtutorial.web.id</a>.
+      </p>
+    </div>
+
+    {posts.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <a
+            href={post.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex flex-col gap-3 group cursor-pointer no-underline"
+          >
+            <!-- Thumbnail artikel -->
+            <div class="aspect-[16/9] w-full rounded-xl overflow-hidden relative">
+              {post.thumbnail ? (
+                <img
+                  src={post.thumbnail}
+                  alt={post.judul}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="w-full h-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center gap-2">
+                  <span class="material-symbols-outlined text-5xl text-slate-300">article</span>
+                  <span class="text-xs text-slate-400">ragamtutorial.web.id</span>
+                </div>
+              )}
+              <!-- Overlay saat hover -->
+              <div class="absolute inset-0 bg-[#0F172A]/0 group-hover:bg-[#0F172A]/20 transition-all duration-300"></div>
+            </div>
+
+            <!-- Meta: tanggal -->
+            <div class="flex items-center gap-3 text-xs text-slate-500 mt-2">
+              <span>{post.tanggal}</span>
+              <span class="h-1 w-1 rounded-full bg-slate-300"></span>
+              <span>ragamtutorial.web.id</span>
+            </div>
+
+            <!-- Judul -->
+            <h3 class="text-lg font-bold text-[#0F172A] group-hover:text-[#2563EB] transition-colors">
+              {post.judul}
+            </h3>
+
+            <!-- Ringkasan -->
+            <p class="text-slate-600 text-sm line-clamp-2">
+              {post.ringkasan}
+            </p>
+
+            <!-- CTA -->
+            <div class="mt-auto">
+              <span class="text-sm font-semibold text-[#2563EB] group-hover:underline">Baca di Blog</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <!-- Fallback jika fetch gagal -->
+      <div class="text-center py-12">
+        <p class="text-slate-500 mb-4">Tidak dapat memuat artikel saat ini.</p>
+        <a
+          class="inline-flex h-10 items-center justify-center rounded bg-[#0F172A] px-6 text-sm font-medium text-white hover:bg-[#0F172A]/90 transition-colors"
+          href="https://ragamtutorial.web.id"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Kunjungi Blog Saya
+        </a>
+      </div>
+    )}
+
+    <!-- Link ke blog -->
+    {posts.length > 0 && (
+      <div class="mt-12 text-center">
+        <a
+          class="inline-flex items-center gap-2 text-sm font-semibold text-[#2563EB] hover:text-[#0F172A] transition-colors group"
+          href="https://ragamtutorial.web.id"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Lihat semua artikel di ragamtutorial.web.id
+          <span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1">arrow_forward</span>
+        </a>
+      </div>
+    )}
+
+  </div>
+</section>

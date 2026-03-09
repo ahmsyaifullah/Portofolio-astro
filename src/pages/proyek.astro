@@ -1,0 +1,39 @@
+---
+// src/pages/proyek.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+
+const seoTitle = "Semua Proyek | Ahmad Syaifullah";
+const seoDescription = "Daftar lengkap portofolio dan studi kasus administrasi sekolah, pengelolaan Dana BOS, Dapodik, dan pelaporan keuangan oleh Ahmad Syaifullah.";
+---
+
+<BaseLayout title={seoTitle} description={seoDescription}>
+  <Navbar />
+  
+  <main class="min-h-[calc(100vh-64px)] flex flex-col items-center justify-center py-24 px-6 lg:px-8 bg-[#F8FAFC]">
+    <div class="text-center max-w-2xl mx-auto flex flex-col items-center gap-6">
+      
+      <!-- Icon/Illustration placeholder -->
+      <div class="w-24 h-24 rounded-full bg-blue-50 flex items-center justify-center mb-4">
+        <span class="material-symbols-outlined text-[#2563EB] text-5xl">construction</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#0F172A]">
+        Coming Soon
+      </h1>
+      
+      <p class="text-lg text-slate-600 leading-relaxed max-w-lg">
+        Halaman ini sedang dalam tahap pengembangan. Segera hadir daftar lengkap portofolio dan studi kasus administrasi sekolah saya.
+      </p>
+
+      <a
+        href="/"
+        class="mt-8 inline-flex h-12 items-center justify-center rounded-lg bg-[#0F172A] px-8 text-base font-medium text-white shadow-md transition-all hover:bg-[#0F172A]/90 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2"
+      >
+        <span class="material-symbols-outlined mr-2" style="font-size: 20px;">arrow_back</span>
+        Kembali ke Beranda
+      </a>
+
+    </div>
+  </main>
+</BaseLayout>

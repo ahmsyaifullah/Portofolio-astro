@@ -1,0 +1,89 @@
+---
+// src/components/Tentang.astro
+// Section Tentang Saya – layout 2 kolom dari dasar-ui-ux.html
+// Konten dari plan.md: narasi orang pertama, Pontianak Indonesia, Akuntansi Syariah
+import { Image } from 'astro:assets';
+import ahmadProfile from '../assets/ahmad-profile.jpg';
+---
+
+<section class="py-24 bg-[#F8FAFC] border-y border-slate-100" id="tentang">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row gap-16 items-center">
+
+      <!-- Kolom kiri: foto profil -->
+      <div class="w-full md:w-1/2 relative flex justify-center">
+
+        <!-- Dekorasi background accent -->
+        <div class="absolute -top-6 -left-6 w-64 h-64 rounded-3xl bg-[#2563EB] opacity-10 rotate-6 hidden md:block"></div>
+        <div class="absolute -bottom-6 -right-6 w-48 h-48 rounded-full bg-[#0F172A] opacity-5 hidden md:block"></div>
+
+        <!-- Container foto utama -->
+        <div class="relative w-full max-w-sm">
+
+          <!-- Frame border biru dekoratif -->
+          <div class="absolute -inset-1 rounded-3xl bg-gradient-to-br from-[#2563EB] via-slate-300 to-[#0F172A] opacity-60 blur-sm"></div>
+
+          <!-- Foto profil -->
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[3/4]">
+            <Image
+              src={ahmadProfile}
+              alt="Ahmad Syaifullah – Spesialis Administrasi Sekolah Pontianak Indonesia"
+              class="h-full w-full object-cover object-top"
+              loading="lazy"
+            />
+            <!-- Overlay gradient bawah untuk badge -->
+            <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0F172A]/80 to-transparent"></div>
+          </div>
+
+          <!-- Badge nama di bawah foto -->
+          <div class="absolute bottom-4 left-4 right-4 flex items-center gap-3">
+            <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0"></div>
+            <div>
+              <p class="text-white font-semibold text-sm leading-tight">Ahmad Syaifullah</p>
+              <p class="text-slate-300 text-xs">Administrasi Sekolah · Pontianak</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Kolom kanan: konten teks -->
+      <div class="w-full md:w-1/2 space-y-6">
+        <h2 class="text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Tentang Saya</h2>
+        <div class="h-1 w-20 bg-[#2563EB] rounded-full"></div>
+
+        <div class="space-y-4 text-lg text-slate-600 leading-relaxed">
+          <p>
+            Halo! Perkenalkan, saya Ahmad Syaifullah, lulusan <strong class="text-[#0F172A] font-semibold">Sarjana Akuntansi Syariah</strong>
+            yang tinggal dan bekerja di <strong class="text-[#0F172A] font-semibold">Pontianak, Indonesia</strong>.
+            Keseharian saya berkutat dengan administrasi sekolah, pengelolaan Dana BOS, sinkronisasi Dapodik,
+            administrasi BPJS, serta pelaporan keuangan lembaga pendidikan.
+          </p>
+          <p>
+            Bagi saya, pekerjaan yang baik selalu dimulai dari data yang dapat dipercaya. Di dunia administrasi sekolah,
+            keakuratan bukan sekadar soal angka yang cocok, melainkan soal kepercayaan yang dibangun antara institusi
+            dan para pemangku kepentingan. Itulah mengapa saya selalu berusaha memastikan setiap catatan benar-benar
+            mencerminkan standar kepatuhan yang berlaku.
+          </p>
+          <p>
+            Mulai dari pengelolaan database siswa hingga penelusuran alur keuangan, saya ingin setiap proses berjalan
+            dengan cara yang mudah dipahami, bisa dipertanggungjawabkan, dan berdampak nyata bagi kemajuan dunia pendidikan.
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="pt-4 grid grid-cols-2 gap-6">
+          <div class="border-l-4 border-[#2563EB] pl-4">
+            <p class="text-3xl font-bold text-[#0F172A]">5+</p>
+            <p class="text-sm text-slate-500">Tahun Pengalaman</p>
+          </div>
+          <div class="border-l-4 border-[#2563EB] pl-4">
+            <p class="text-3xl font-bold text-[#0F172A]">100%</p>
+            <p class="text-sm text-slate-500">Tingkat Kepatuhan</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

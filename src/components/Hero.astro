@@ -1,0 +1,77 @@
+---
+// src/components/Hero.astro
+// Hero section sesuai layout dasar-ui-ux.html
+// Konten sesuai plan.md: judul, subjudul, deskripsi, CTA Lihat Proyek + Hubungi Saya
+---
+
+<section
+  class="relative flex min-h-[85vh] flex-col items-center justify-center px-6 py-24 text-center lg:px-8 bg-white"
+  id="beranda"
+>
+  <!-- Background radial gradient persis dari dasar-ui-ux.html -->
+  <div class="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#F8FAFC_100%)]"></div>
+
+  <div class="mx-auto max-w-3xl space-y-8">
+
+    <!-- Badge ketersediaan -->
+    <div class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-600">
+      <span class="mr-1 h-2 w-2 rounded-full bg-[#2563EB]"></span>
+      Tersedia untuk Kerja Sama Baru
+    </div>
+
+    <!-- H1 -->
+    <h1 class="text-5xl font-black tracking-tight text-[#0F172A] sm:text-6xl lg:text-7xl" style="text-wrap: balance;">
+      Ahmad Syaifullah
+    </h1>
+
+    <!-- Subjudul -->
+    <p class="text-xl font-medium text-[#2563EB] sm:text-2xl min-h-[3.5rem] sm:min-h-0 flex items-center justify-center" id="typewriter-container">
+      <span class="sr-only">Administrasi Sekolah &amp; Manajemen Data Pendidikan</span>
+      <span id="typewriter-text" aria-hidden="true"></span>
+      <span id="typewriter-cursor" class="animate-pulse inline-block w-[2px] h-[1em] bg-[#2563EB] ml-1"></span>
+    </p>
+
+    <!-- Deskripsi singkat – sudut pandang orang pertama -->
+    <p class="mx-auto max-w-2xl text-lg leading-relaxed text-slate-600">
+      Saya membantu institusi pendidikan menjaga kredibilitas melalui pengelolaan data yang akurat,
+      pelaporan yang transparan, dan administrasi yang efisien. Dengan latar belakang Akuntansi Syariah
+      dan pengalaman langsung di lapangan, saya memastikan setiap data mencerminkan standar akuntabilitas
+      yang tinggi.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+      <a
+        class="inline-flex h-12 items-center justify-center rounded bg-[#0F172A] px-8 text-base font-semibold text-white shadow-lg shadow-[#0F172A]/20 transition-all hover:bg-[#0F172A]/90 hover:-translate-y-0.5"
+        href="#proyek"
+      >
+        Lihat Proyek
+      </a>
+      <a
+        class="inline-flex h-12 items-center justify-center rounded border border-slate-200 bg-white px-8 text-base font-semibold text-slate-900 shadow-sm transition-all hover:border-slate-300 hover:bg-slate-50"
+        href="#kontak"
+      >
+        Hubungi Saya
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const text = "Administrasi Sekolah & Manajemen Data Pendidikan";
+  const typewriterText = document.getElementById('typewriter-text');
+  let i = 0;
+  
+  function typeWriter() {
+    if (typewriterText && i < text.length) {
+      typewriterText.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, 50); // Kecepatan mengetik
+    }
+  }
+  
+  if (typewriterText) {
+    setTimeout(typeWriter, 500); // Mulai setelah delay 500ms
+  }
+</script>
